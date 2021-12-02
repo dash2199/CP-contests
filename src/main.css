@@ -24,7 +24,7 @@
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 1rem;
-    min-width: 1285px;
+    min-width: 1280px;
     border-radius: 7px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -141,3 +141,64 @@ select {
     border-color:dodgerBlue;
     box-shadow:0 0 8px 0 dodgerBlue;
   }
+
+  @media (max-width: 1025px){
+    select{
+        display : none;
+    }
+
+    .btn-view{
+        display: none;
+        font-size: 0.65rem;
+        position: relative;
+        right: 350px;
+    }
+
+    .whole{
+        display: block;
+        font-size: 0.8rem;
+        min-width: 600px;
+    }
+
+
+    h1{
+        margin-right: -30px;
+    }
+
+    .search-bar{
+        margin-right: -30px;
+    }
+  }
+
+  @media (max-width: 500px){
+    table thead{
+        display: none;
+    }
+
+    .whole{
+        display: block;
+        width: 100%;
+        min-width: 100px;
+    }
+
+    table tr {
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      display: block;
+      font-size: .8em;
+      text-align: center;
+    }
+
+    h1{
+        margin-right: 0px;
+    }
+
+    .search-bar{
+        margin-right: 0px;
+    }
+}
+
+  
