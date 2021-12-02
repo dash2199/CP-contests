@@ -6,12 +6,16 @@ import Cal from './Cal.js';
 import moment from 'moment';
 let name = ".";
 
+
 const Main = () => {
     const [state , setState] = useState([]);
     const [lnk , setLnk] = useState("https://kontests.net/api/v1/all")
     const [loading , setLoading] = useState(false);
     const [view , setView] = useState(true);
+    const [text , setText] = useState("");
+    const [flag , setFlag] = useState(1);
 
+    console.log(flag);
     console.log(window.innerHeight); 
     useEffect(() =>{
         setLoading(false);
@@ -27,6 +31,9 @@ const Main = () => {
     const handleChange = (e) =>{
         e.preventDefault();
         console.log(e.target.value);
+        setText("");
+        setFlag(0);
+
         if(e.target.value === "All"){
             name = ".";
             setLnk("https://kontests.net/api/v1/all");
@@ -36,6 +43,9 @@ const Main = () => {
         }else if(e.target.value === "Atcoder"){
             name = "Atcoder";
             setLnk("https://kontests.net/api/v1/at_coder");
+        }else if(e.target.value === "Codechef"){
+            name = "Codechef";
+            setLnk("https://kontests.net/api/v1/code_chef");
         }else if(e.target.value === "Topcoder"){
             name = "Topcoder";
             setLnk("https://kontests.net/api/v1/top_coder");
@@ -55,6 +65,11 @@ const Main = () => {
         setView(!view);
     }
 
+    const handleSearch = (e) =>{
+        setText(e.target.value);
+        setFlag(1);
+    }
+
     return (
         <>
         <div className = "back" >
@@ -66,15 +81,18 @@ const Main = () => {
                         <option value = "All">All</option>
                         <option value = "Codeforces">Codeforces</option>
                         <option value = "Atcoder">Atcoder</option>
+                        <option value = "Codechef">Codechef</option>
                         <option value = "Topcoder">Topcoder</option>
                         <option value = "HackerEarth">HackerEarth</option>
                         <option value = "KickStart">KickStart</option>
                         <option value = "LeetCode">LeetCode</option>
                     </select>
                 </div>
+                
             </div>
 
             {view ? <div className = "container">
+                <input type = "text" placeholder = "Search..." className = "search-bar" onChange = {handleSearch}></input>
                 {loading ? <table className = "whole">
                     <thead className = "head">
                         <tr>
@@ -87,8 +105,14 @@ const Main = () => {
                     </thead>
                     <tbody className = "rows" >
                         {state.filter(function(obj){
-                            if(Math.round(obj.duration/3600) <= 240){
-                                return true;
+                            if(flag === 1){
+                                if(Math.round(obj.duration/3600) <= 240 && (name.toLowerCase().indexOf(text.toLowerCase()) > -1 || obj.name.toLowerCase().indexOf(text.toLowerCase()) > -1 || moment(obj.start_time).format('DD-MM-YYYY  h:mm a').toLowerCase().indexOf(text.toLowerCase()) > -1)){
+                                    return true;
+                                }
+                            }else{ 
+                                if(Math.round(obj.duration/3600) <= 240){
+                                    return true;
+                                }
                             }
                         }).slice(0 , 30).map((it , idx) => (
                             <tr key = {idx} style = {{borderBottom: "1px solid #ddd"}}>
