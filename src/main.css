@@ -89,7 +89,7 @@ select {
     cursor: pointer;
 }
 
- .dropdown{
+.dropdown{
     margin-left: 38rem;
     padding-left: 0.5rem;
 }
@@ -102,17 +102,17 @@ select {
     border-radius: .25em;
  }
 
- .Load {
+.Load {
     font-size: 20px;
     margin-top: 5rem;
     color: white;
- }
+}
 
- .col1{
+.col1{
      column-width: 200px;
- }
+}
 
- .btn-view {
+.btn-view {
 	color: black;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -140,9 +140,9 @@ select {
 .search-bar:focus{
     border-color:dodgerBlue;
     box-shadow:0 0 8px 0 dodgerBlue;
-  }
+}
 
-  @media (max-width: 1025px){
+@media (max-width: 1025px){
     select{
         display : none;
     }
@@ -168,9 +168,9 @@ select {
     .search-bar{
         margin-right: -30px;
     }
-  }
+}
 
-  @media (max-width: 500px){
+@media (max-width: 500px){
     table thead{
         display: none;
     }
@@ -182,14 +182,14 @@ select {
     }
 
     table tr {
-      display: block;
-      margin-bottom: .625em;
+        display: block;
+        margin-bottom: .625em;
     }
-    
+
     table td {
-      display: block;
-      font-size: .8em;
-      text-align: center;
+        display: block;
+        font-size: .8em;
+        text-align: center;
     }
 
     h1{

@@ -6,7 +6,6 @@ import Cal from './Cal.js';
 import moment from 'moment';
 let name = ".";
 
-
 const Main = () => {
     const [state , setState] = useState([]);
     const [lnk , setLnk] = useState("https://kontests.net/api/v1/all")
@@ -32,32 +31,39 @@ const Main = () => {
         e.preventDefault();
         console.log(e.target.value);
         setText("");
-        setFlag(0);
 
         if(e.target.value === "All"){
             name = ".";
             setLnk("https://kontests.net/api/v1/all");
+            setFlag(1);
         }else if(e.target.value === "Codeforces"){
             name = "Codeforces";
             setLnk("https://kontests.net/api/v1/codeforces");
+            setFlag(0);
         }else if(e.target.value === "Atcoder"){
             name = "Atcoder";
             setLnk("https://kontests.net/api/v1/at_coder");
+            setFlag(0);
         }else if(e.target.value === "Codechef"){
             name = "Codechef";
             setLnk("https://kontests.net/api/v1/code_chef");
+            setFlag(0);
         }else if(e.target.value === "Topcoder"){
             name = "Topcoder";
             setLnk("https://kontests.net/api/v1/top_coder");
+            setFlag(0);
         }else if(e.target.value === "HackerEarth"){
             name = "HackerEarth";
             setLnk("https://kontests.net/api/v1/hacker_earth");
+            setFlag(0);
         }else if(e.target.value === "KickStart"){
             name = "Kick Start";
             setLnk("https://kontests.net/api/v1/kick_start");
+            setFlag(0);
         }else{
             name = "LeetCode";
             setLnk("https://kontests.net/api/v1/leet_code");
+            setFlag(0);
         } 
     }
 
@@ -67,7 +73,6 @@ const Main = () => {
 
     const handleSearch = (e) =>{
         setText(e.target.value);
-        setFlag(1);
     }
 
     return (
@@ -106,11 +111,13 @@ const Main = () => {
                     <tbody className = "rows" >
                         {state.filter(function(obj){
                             if(flag === 1){
-                                if(Math.round(obj.duration/3600) <= 240 && (name.toLowerCase().indexOf(text.toLowerCase()) > -1 || obj.name.toLowerCase().indexOf(text.toLowerCase()) > -1 || moment(obj.start_time).format('DD-MM-YYYY  h:mm a').toLowerCase().indexOf(text.toLowerCase()) > -1)){
-                                    return true;
+                                if(obj.site !== undefined){
+                                    if(Math.round(obj.duration/3600) <= 240 && (obj.site.toLowerCase().indexOf(text.toLowerCase()) > -1 || obj.name.toLowerCase().indexOf(text.toLowerCase()) > -1 || moment(obj.start_time).format('DD-MM-YYYY  h:mm a').toLowerCase().indexOf(text.toLowerCase()) > -1)){
+                                        return true;
+                                    }
                                 }
                             }else{ 
-                                if(Math.round(obj.duration/3600) <= 240){
+                                if(Math.round(obj.duration/3600) <= 240 && (name.toLowerCase().indexOf(text.toLowerCase()) > -1 || obj.name.toLowerCase().indexOf(text.toLowerCase()) > -1 || moment(obj.start_time).format('DD-MM-YYYY  h:mm a').toLowerCase().indexOf(text.toLowerCase()) > -1)){
                                     return true;
                                 }
                             }
