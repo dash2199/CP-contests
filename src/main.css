@@ -119,7 +119,7 @@ select {
 	background:white;
 	padding: 13px;
     width: 20%;
-    margin-left: 70px;
+    margin-left: 10px;
 	border-radius: 10px;
 	display: inline-block;
 	border: none;
@@ -140,6 +140,22 @@ select {
 .search-bar:focus{
     border-color:dodgerBlue;
     box-shadow:0 0 8px 0 dodgerBlue;
+}
+
+@media (max-width: 1395px){
+    .whole{
+        min-width: 600px;
+    }
+
+    .dropdown{
+        margin-right: 200px;
+    }
+
+    .btn-view{
+        width: 100%;
+        margin-left: 200px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 1025px){
